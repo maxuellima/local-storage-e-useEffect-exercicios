@@ -1,26 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import './styles.css'
+import { useEffect, useState } from 'react'
+import { DivContainer, InputsContainer, ListaDeTarefas, Tarefa } from './style';
 
-const TarefaList = styled.ul`
-  padding: 0;
-  width: 200px;
-`
 
-const Tarefa = styled.li`
-  text-align: left;
-  text-decoration: ${({ completa }) => (completa ? 'line-through' : 'none')};
-`
-
-const InputsContainer = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  gap: 10px;
-`
 
 function App() {
-  const [tarefas, setTarefa] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [tarefas, setTarefas] = useState([]);
+  const [valorDoInput, setValorDoInput] = useState("");
   const [filtro, setFiltro] = useState("")
 
   // useEffect() => {
@@ -37,19 +22,19 @@ function App() {
   //   []
   // };
 
-  const onChangeInput = (event) => {
+  const pegarValorDoInput = (event) => {
     console.log("aaa");
   }
 
-  const criaTarefa = () => {
+  const criarTarefa = () => {
     console.log("aaa");
   }
 
-  const selectTarefa = (id) => {
+  const selecionarTarefa = (id) => {
     console.log("aaa");
   }
 
-  const onChangeFilter = (event) => {
+  const pegarValorDoSelect = (event) => {
     console.log("aaa");
   }
 
@@ -67,35 +52,35 @@ function App() {
 
 
   return (
-    <div className="App">
+    <DivContainer>
       <h1>Lista de tarefas</h1>
       <InputsContainer>
-        <input value={inputValue} onChange={onChangeInput} />
-        <button onClick={criaTarefa}>Adicionar</button>
+        <input value={valorDoInput} onChange={pegarValorDoInput} />
+        <button onClick={criarTarefa}>Adicionar</button>
       </InputsContainer>
       <br />
 
       <InputsContainer>
         <label>Filtro</label>
-        <select value={filtro} onChange={onChangeFilter}>
+        <select value={filtro} onChange={pegarValorDoSelect}>
           <option value="">Nenhum</option>
           <option value="pendentes">Pendentes</option>
           <option value="completas">Completas</option>
         </select>
       </InputsContainer>
-      <TarefaList>
+      <ListaDeTarefas>
         {listaFiltrada.map(tarefa => {
           return (
             <Tarefa
               completa={tarefa.completa}
-              onClick={() => selectTarefa(tarefa.id)}
+              onClick={() => selecionarTarefa(tarefa.id)}
             >
               {tarefa.texto}
             </Tarefa>
           )
         })}
-      </TarefaList>
-    </div>
+      </ListaDeTarefas>
+    </DivContainer>
   )
 }
 
